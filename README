@@ -1,0 +1,40 @@
+1. User guide:
+ 
+	The following command line is accepted:
+
+   	bbserv [-d] [-f] [-p port] [-s port] [-T tmax] [-b bbfile]
+
+   	where
+
+     	 -b overrides (or sets) the file name bbfile according to its argument
+     	 -T overrides Tmax according to its argument
+     	 -p overrides the port number bp according to its argument
+     	 -s overrides the port number sp according to its argument
+     	 -f (with no argument) forces d to false or 0
+     	 -d (with no argument) forces D to true or 1
+
+   	The server functions with any telnet-capable client.The variable name and
+   	value for each pair in this configuration file are separated by the = character
+   	(with no blanks). It includes the following definitions, in no particular order:
+      
+      	THMAX=Tmax
+      	BBPORT=bp
+      	SYNCPORT=sp
+      	BBFILE=bbfile
+      	PEERS=peers
+      	DAEMON=d
+      	DEBUG=D
+
+   	where D and d are Boolean values that can be expressed using either the integers 0 and 1 
+	or the words false and true, Tmax, bp, and sp are strings that indicate positive numbers,
+	bbfile is a file name, and bbfile is a Boolean value. The list of peers is made up of strings
+	divided by blank spaces. Every one of these strings has the format host:port, where host is 
+	the name of the host and port is a positive integer.
+   
+	For the replicated database system,
+   	The server takes PEERS as replicated database, but it connects to replicated database once 
+	a client connects to bulletin server.If peers are offline at that time, server will erase
+	them in the list of replicated database.Therefore, synchronization only happens iff PEERS
+	are online before the first client come in. If replicated peers didn't set ur server as 
+	replicated server, the synchronization will be one way synchronization.
+
